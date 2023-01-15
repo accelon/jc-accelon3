@@ -17,12 +17,12 @@ export const writeChanged=(fn,buf,enc='utf8')=>{ //write to fn only if changed
 const lst=['jicheng.xml'];
 const maxlen=40;
 const wrapline=line=>{
-	const snippet=line.split('。');
+	const snippet=line.split(/(。)/);
 	let s='',acc=0;
 	for (let i=0;i<snippet.length;i++) {
-		if (acc>0 && acc+ snippet[i].length>maxlen) {
+		if (acc>0 && acc+ snippet[i].length>maxlen && snippet[i]!=='。') {
 			acc=0;
-			s+='。\n';
+			s+='\n';
 		}
 		s+=snippet[i];
 		acc+=snippet[i].length;
